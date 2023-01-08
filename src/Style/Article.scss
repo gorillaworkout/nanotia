@@ -1,0 +1,39 @@
+.card-article {
+  // width:20%;
+  height: 180px;
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+  margin-bottom: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+
+  img {
+    width: 250px;
+  }
+  .card {
+    border: none;
+    width: 100%;
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .author-card {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      #img-author {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+      }
+      p {
+        margin-right: 5px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
