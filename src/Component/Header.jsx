@@ -1,12 +1,14 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
+  const navigate = useNavigate()
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center align-items">
-        <a className="navbar-brand" href="#">
+        <div className="navbar-brand" onClick={()=>navigate('/')}>
           NANOTIA
-        </a>
+        </div>
         <button
           className="navbar-toggler"
           type="button"

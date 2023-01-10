@@ -11,7 +11,7 @@ export default function Home() {
             <Article />
         </div>
         <div className="d-flex flex-column col-4">
-            <Iklan/>
+            {/* <Iklan/> */}
         </div>
       </div>
     </>
