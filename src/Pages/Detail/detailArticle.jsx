@@ -11,7 +11,22 @@ import parse from "html-react-parser";
 import image_nano from "../../Asset/image_techin.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet";
 
+export const SEO = ({ title, description, meta = [] }) => {
+  return (
+    <Helmet
+      title={title}
+      htmlAttributes={{ lang: "en" }}
+      meta={[
+        {
+          name: `description`,
+          content: description,
+        },
+      ]}
+    />
+  );
+};
 export default function DetailArticle() {
   toast.configure();
   const navigate = useNavigate();
@@ -21,18 +36,18 @@ export default function DetailArticle() {
   const [currentPage, setCurrentPage] = useState(1);
   const [productRender, setProductRender] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [allProduct,setAllProduct] = useState(Product?.allProduct?.posts)
+  const [allProduct, setAllProduct] = useState(Product?.allProduct?.posts);
   const [totalLimitArticle, setTotalLimitArticle] = useState(
     JSON.parse(localStorage.getItem("totalArticle"))
   );
   useEffect(() => {
     dataToRender(currentPage);
-    setAllProduct(Product?.allProduct?.posts)
-  }, [currentPage,Product]);
+    setAllProduct(Product?.allProduct?.posts);
+  }, [currentPage, Product]);
 
   const dataToRender = () => {
-    setIsLoading(true);
     if (totalLimitArticle > 5) {
+      setIsLoading(true);
       toast.error("Maximum 5 Article!, Ciao!", {
         position: "top-center",
         autoClose: 2000,
@@ -61,7 +76,7 @@ export default function DetailArticle() {
         setTimeout(() => {
           setProductRender(sliceItems);
           setIsLoading(false);
-        }, 500);
+        }, 1500);
         if (findMax === Product.allProduct.posts.length) {
           sethasMore(false);
         }
@@ -138,6 +153,9 @@ export default function DetailArticle() {
   return (
     <>
       <Header />
+      <Helmet>
+        <title>{detail}</title>
+      </Helmet>
       <div className="banner_nano">
         <img src={image_nano} alt="" />
       </div>

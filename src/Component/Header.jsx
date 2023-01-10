@@ -1,13 +1,15 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-
+import ImageN from '../Asset/Nletter.jpeg'
+import '../Style/Header.scss'
 export default function Header() {
   const navigate = useNavigate()
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center align-items">
+      <nav className="navbar navbar-expand-lg navbar-light  d-flex justify-content-evenly align-items container-header">
         <div className="navbar-brand" onClick={()=>navigate('/')}>
-          NANOTIA
+          <img src={ImageN} alt="" />
+          <p>ANOTIA</p>
         </div>
         <button
           className="navbar-toggler"
