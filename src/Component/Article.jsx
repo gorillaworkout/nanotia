@@ -1,62 +1,72 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../Style/Article.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useNavigate } from 'react-router-dom';
-
-export default function Article() {
-  const navigate = useNavigate()
+import { useNavigate } from "react-router-dom";
+import { GetAllProduct } from "../Redux/Actions/ProductActions";
+export default function Article(props) {
+  const dispatch = useDispatch();
+  let newtitle = props.title;
+  const navigate = useNavigate();
   const Product = useSelector((state) => state.Product);
   const [hasMore, sethasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [productRender, setProductRender] = useState([]);
-  const [isLoading,setIsLoading]=useState(true)
-  const [arrId,setArrId]= useState([])
-  const [totalUserArticle,setTotalUserArticle] = useState(0)
+  const [isLoading, setIsLoading] = useState(true);
+  const [arrId, setArrId] = useState([]);
+  const [totalUserArticle, setTotalUserArticle] = useState(0);
 
   useEffect(() => {
     dataToRender(currentPage);
   }, [currentPage]);
   useEffect(() => {
-    if (Product?.allProduct?.posts) {
+    if (Product?.allProduct) {
       dataToRender();
     }
-    if(Product.isLoadingProduct === false){
-      setIsLoading(false)
+    if (Product.isLoadingProduct === false) {
+      setIsLoading(false);
     }
   }, [Product]);
 
+  useEffect(() => {
+    if (!hasMore) {
+      dispatch(GetAllProduct());
+    }
+  }, [hasMore]);
+
   const dataToRender = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     let findMax = currentPage * 5;
-    if (Product.allProduct?.posts) {
-      let sliceItems = Product.allProduct.posts.slice(0, findMax);
-      setTimeout(()=>{
+    if (Product?.allProduct) {
+      let sliceItems = Product.allProduct.slice(0, findMax);
+      setTimeout(() => {
         setProductRender(sliceItems);
-        setIsLoading(false)
-      },500)
-      if (findMax === Product.allProduct.posts.length) {
+        setIsLoading(false);
+        sethasMore(true)
+      }, 1500);
+      if (findMax === Product.allProduct.length) {
         sethasMore(false);
       }
     }
   };
 
-  const redirectToDetail=(link,id)=>{
-    navigate(`/detail/${link}`)
-    let totalFromLocalStorage = JSON.parse(localStorage.getItem('totalArticle'))
-    // let arrIndexIdfromLocalStorage = JSON.parse(localStorage.getItem('arrIndexid')) // future update for duplicate index open
-    if(totalFromLocalStorage){
-      setTotalUserArticle(totalUserArticle+1)
+  const redirectToDetail = (link, id) => {
+    navigate(`/detail/${link}`);
+    let totalFromLocalStorage = JSON.parse(
+      localStorage.getItem("totalArticle")
+    );
+    if (totalFromLocalStorage) {
+      setTotalUserArticle(totalUserArticle + 1);
     }
-    localStorage.setItem('totalArticle',totalFromLocalStorage+1)
-  }
-  useEffect(()=>{
-      if(totalUserArticle === 2){
-        setIsLoading(true)
-      }
-  },[totalUserArticle])
+    localStorage.setItem("totalArticle", totalFromLocalStorage + 1);
+  };
+  useEffect(() => {
+    if (totalUserArticle === 2) {
+      setIsLoading(true);
+    }
+  }, [totalUserArticle]);
 
   const renderArticle = () => {
     if (isLoading) {
@@ -106,7 +116,11 @@ export default function Article() {
         >
           {productRender.map((val, index) => {
             return (
-              <div className="card-article" key={index + 1} onClick={()=>redirectToDetail(val.seo.title,index)}>
+              <div
+                className="card-article"
+                key={index + 1}
+                onClick={() => redirectToDetail(val.seo.title, index)}
+              >
                 <img src={val.featured_image.source} alt="" />
                 <div className="card">
                   <div className="card-body">
@@ -116,7 +130,8 @@ export default function Article() {
                       <img src={val.author.avatar_url} alt="" id="img-author" />
                       <p>{val.author.display_name}</p>
                       <p>20h Ago</p>
-                      <p>{val.read_time} min read</p>
+                      {/* <p>{val.read_time} min read</p> */}
+                      <p>{index + 1}</p>
                     </div>
                   </div>
                 </div>

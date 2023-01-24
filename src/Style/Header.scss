@@ -1,23 +1,187 @@
 .container-header {
-  background-color: #f5f5f5 !important;
   position: sticky !important;
-  z-index:10 !important;
-  top:0px !important;
+  z-index: 10 !important;
+  top: 0px !important;
+  height: 120px;
+  // border:1px solid red;
   // top:0px;
-  .navbar-brand {
+
+  .header-top {
+    padding-left: 150px;
+    padding-right: 150px;
+    width: 100%;
+    height: 50%;
+    // border:1px solid blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5 !important;
+    .menu-top-left {
+      width: 70%;
+      height: 100%;
+      // border:1px solid pink;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      .navbar-brand {
+        width: 200px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          height: 75%;
+        }
+        p {
+          font-size: 30px;
+          color: #b0d7d2;
+        }
+      }
+      .card-header {
+        min-width: 65px;
+        height: 100%;
+        // border:1px solid red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        color:#949494;
+        transition: 0.5s;
+        font-size:11px;
+        font-family: Lato, sans-serif;
+        letter-spacing: 2px;
+        text-transform: uppercase ;
+        &:hover{
+          cursor: pointer;
+          color:#171717;
+          
+        }
+      }
+      .active {
+        background-color: white;
+        box-shadow: 0 -10px 10px 0 rgb(0 0 0 / 10%);
+        color:#171717;
+      }
+    }
+    .menu-top-right {
+      width: 30%;
+      height: 100%;
+      // border: 1px solid red;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      .searching-card{
+        // width:50%;
+        height:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .search-icon{
+          transition:0.5s;
+          cursor: pointer;
+          font-size:20px;
+          margin:10px;
+          &:hover{
+            color:#b0d7d2;
+          }
+        }
+
+      }
+      .bell-icon{
+        transition:0.5s;
+        cursor: pointer;
+        font-size:20px;
+        margin:10px;
+        &:hover{
+          color:#b0d7d2;
+        }
+      
+      }
+      .profile-card{
+        height:100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size:10px;
+        font-weight:700;
+        position: relative;
+        margin:10px;
+        top:10px;
+        .profile-rounded{
+          width:25px;
+          height:25px;
+          // padding:0 12px;
+          img{
+            border-radius:50%;
+            height:100%;
+            width:100%;
+          }
+        }
+      }
+    }
+  }
+  .header-bottom {
+    width: 100%;
+    height: 50%;
+    // border: 1px solid green;
+    background-color: white;
+    padding-left: 150px;
+    padding-right: 150px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    &:hover {
-      cursor: pointer;
+    .bottom-left{
+      width:70%;
+      height:100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      .header-left-card {
+        min-width: 65px;
+        height: 100%;
+        // border:1px solid red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        color:#949494;
+        transition: 0.5s;
+        font-size:11px;
+        font-family: Lato, sans-serif;
+        letter-spacing: 2px;
+        text-transform: uppercase ;
+        font-weight:600;
+        &:hover{
+          cursor: pointer;
+          color:#171717;
+          
+        }
+      }
     }
-    img {
-      width: 50px;
-    }
-    p {
-      color: #b0d7d2;
-      font-weight: 700;
-      letter-spacing:2px;
+    .bottom-right{
+      width:30%;
+      height:100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      .subscribe-card{
+        width:130px;
+        height:40px;
+        background-color: #e00101;
+        color:white;
+        border-radius:20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size:12px;
+        font-weight:600;
+      }
     }
   }
 }

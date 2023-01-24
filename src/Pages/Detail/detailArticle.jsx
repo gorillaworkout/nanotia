@@ -36,13 +36,13 @@ export default function DetailArticle() {
   const [currentPage, setCurrentPage] = useState(1);
   const [productRender, setProductRender] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [allProduct, setAllProduct] = useState(Product?.allProduct?.posts);
+  const [allProduct, setAllProduct] = useState(Product?.allProduct);
   const [totalLimitArticle, setTotalLimitArticle] = useState(
     JSON.parse(localStorage.getItem("totalArticle"))
   );
   useEffect(() => {
     dataToRender(currentPage);
-    setAllProduct(Product?.allProduct?.posts);
+    setAllProduct(Product?.allProduct);
   }, [currentPage, Product]);
 
   const dataToRender = () => {
@@ -62,8 +62,8 @@ export default function DetailArticle() {
       }, 5000);
     } else {
       let findMax = currentPage * 1;
-      if (Product.allProduct.posts) {
-        let productArticle = Product.allProduct.posts;
+      if (Product?.allProduct) {
+        let productArticle = Product?.allProduct;
 
         let findIndex = productArticle.findIndex((val) => {
           if (val.seo.title === detail) {
@@ -77,7 +77,7 @@ export default function DetailArticle() {
           setProductRender(sliceItems);
           setIsLoading(false);
         }, 1500);
-        if (findMax === Product.allProduct.posts.length) {
+        if (findMax === Product.allProduct.length) {
           sethasMore(false);
         }
       }
@@ -89,7 +89,7 @@ export default function DetailArticle() {
     const items = new Array(totalItems).fill(null);
     return items.map((val, index) => {
       return (
-        <div className="card-article" key={index}>
+        <div className="card-article" key={index+1}>
           <Skeleton
             style={{
               border: "1px solid #ccc",

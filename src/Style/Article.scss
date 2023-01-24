@@ -1,9 +1,11 @@
-.card-article {
+
+.card-article{
   // width:20%;
   height: 180px;
   display: flex;
   flex-direction: row;
-  width: 800px;
+  // width: 800px;
+
   margin-bottom: 20px;
   &:hover {
     cursor: pointer;
@@ -17,7 +19,7 @@
     width: 100%;
 
     .card-body {
-      display: flex;
+      display: flex;  
       flex-direction: column;
       justify-content: space-between;
     }
@@ -31,8 +33,8 @@
         border-radius: 50%;
       }
       p {
-        margin-right: 5px;
-        margin-left: 5px;
+        margin-right: 5px !important;
+        margin-left: 5px !important;
       }
     }
   }
